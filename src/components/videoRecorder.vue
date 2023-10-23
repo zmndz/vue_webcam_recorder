@@ -1,5 +1,7 @@
 <template>
   <div class="my-0 mx-auto max-w-screen-xl h-full flex flex-col">
+
+    <!-- VIDEO PREVIEW START -->
     <div class="p-20 m-4 h-[85%]">
       <div class="w-full h-full">
         <div 
@@ -60,8 +62,10 @@
           </div>
         </div>
       </div>
-
     </div>
+    <!-- VIDEO PREVIEW END -->
+
+    <!-- ACTION BUTTONS START -->
     <div class="p-8 m-4 h-[15%] flex justify-center items-center">
       <div class="w-full flex justify-center items-center">
         <button 
@@ -117,8 +121,10 @@
         </button>
       </div>
     </div>
+    <!-- ACTION BUTTONS END -->
   </div>
 
+  <!-- HIDDEN AUDIO CONTROLS START -->
   <div>
     <audio ref="recordingSoundStart">
       <source src="../assets/start.mp3" type="audio/mpeg">
@@ -128,6 +134,7 @@
       <source src="../assets/stop.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
+  <!-- HIDDEN AUDIO CONTROLS END -->
   </div>
 </template>
 
