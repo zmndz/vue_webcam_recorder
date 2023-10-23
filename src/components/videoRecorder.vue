@@ -133,7 +133,7 @@
 
 <script setup lang="ts">
 import { reactive, ref, onUnmounted } from 'vue';
-import { storage } from '../utils/firebase.ts';
+import { storage } from '../utils/firebase';
 import { ref as storageRef, uploadBytesResumable, getDownloadURL  } from 'firebase/storage';
 import progressbar from './progressbar.vue';
 
@@ -142,6 +142,12 @@ const isUploadStarted = ref<boolean>(false);
 const isUploadCanceled = ref<boolean>(false);
 const uploadProgress = ref<number>(0);
 
+const video = ref();
+const videoPreview = ref();
+const videoUrl = ref();
+const recordingSoundStart = ref();
+const recordingSoundStop = ref();
+
 interface VideoAttributes {
   name: string,
   url: any
@@ -149,12 +155,6 @@ interface VideoAttributes {
 
 let recordingStatus = ref<string>('NOT_STARTED');
 let isLoading = ref<boolean>(false);
-
-const video = ref();
-const videoPreview = ref();
-const videoUrl = ref();
-const recordingSoundStart = ref();
-const recordingSoundStop = ref();
 
 let camera: any = null;
 let mediaRecorder: any = null;
@@ -185,7 +185,6 @@ const stopCameraFeed = async () => {
 
     currentVideo.name = Date.now() + '_recorded.webm';
     currentVideo.url = localVideo;
-    console.log('videoPreview.value: ', videoPreview.value);
     videoPreview.value.src = currentVideo.url;
     mediaRecorder.stream.getTracks().forEach((track: any) => {
         if (track.readyState == 'live') {
@@ -318,7 +317,6 @@ const videoPlayback = () => {
       console.log('Player Is: ', VideoJSPlayerInstance)
     },
   )
-  console.log('VideoJSPlayerInstance: ', VideoJSPlayerInstance);
 }
 
 onUnmounted(() => {
